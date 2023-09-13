@@ -97,7 +97,7 @@ router.post("/courses", authenticateAdmin, async (req, res) => {
 router.get("/courses", authenticateAdmin, async (req, res) => {
   const courses = await Course.find({ adminId: req.headers.adminId });
   if (!courses) {
-    res.sendStatus(404).json({
+    res.status(404).json({
       msg: "Courses not found",
     });
     return;
@@ -109,6 +109,17 @@ router.get("/courses", authenticateAdmin, async (req, res) => {
 
 router.get("/courses/:courseId", authenticateAdmin, async(req, res) => {
   const courseId = req.params.courseId;
+  const course = await Course.findOne({_id: courseId, adminId: req.headers.adminId});
+  if(!course){
+    res.status(404).json({
+      message: "Course not found"
+    })
+    return;
+  }
+  res.json({
+    course
+  })
+
 })
 
 router.put("/courses/:courseId", authenticateAdmin, async (req, res) => {

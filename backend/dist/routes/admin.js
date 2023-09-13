@@ -99,13 +99,26 @@ router.post("/courses", auth_1.authenticateAdmin, (req, res) => __awaiter(void 0
 router.get("/courses", auth_1.authenticateAdmin, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const courses = yield db_1.Course.find({ adminId: req.headers.adminId });
     if (!courses) {
-        res.sendStatus(404).json({
+        res.status(404).json({
             msg: "Courses not found",
         });
         return;
     }
     res.json({
         courses: courses,
+    });
+}));
+router.get("/courses/:courseId", auth_1.authenticateAdmin, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const courseId = req.params.courseId;
+    const course = yield db_1.Course.findOne({ _id: courseId, adminId: req.headers.adminId });
+    if (!course) {
+        res.status(404).json({
+            message: "Course not found"
+        });
+        return;
+    }
+    res.json({
+        course
     });
 }));
 router.put("/courses/:courseId", auth_1.authenticateAdmin, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
