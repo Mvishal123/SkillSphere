@@ -4,7 +4,8 @@ import SignIn from "./components/SignIn";
 import Header from "./components/Header";
 import MainLandingPage from "./components/pages/MainLandingPage";
 import TeacherLandingPage from "./components/pages/TeacherLandingPage";
-import TeacherAddCourse from "./components/pages/TeacherAddCourse"
+import TeacherAddCourse from "./components/pages/TeacherAddCourse";
+import TeacherCourses from "./components/pages/TeacherCourses";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/admin/signup" element={<SignUp />} />
         <Route path="/admin/signin" element={<SignIn />} />
         <Route path="/admin/addcourse" element={<TeacherAddCourse />} />
+        <Route path="/admin/courses" element={< TeacherCourses/>} />
       </Routes>
     </div>
   );

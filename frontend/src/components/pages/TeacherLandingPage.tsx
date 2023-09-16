@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
+// import { useEffect } from "react";
 
 const TeacherLandingPage = () => {
 
@@ -11,7 +12,7 @@ const TeacherLandingPage = () => {
       </h1>
       <div className="flex flex-col items-center my-20">
         <div className="text-center">
-          <h2 className="text-4xl font-ui font-extrabold tracking-tighter">
+          <h2 className="text-7xl font-ui font-extrabold tracking-tighter">
             Start teaching
           </h2>
           <span className="text-3xl font-ui text-slate-600 tracking-tight">

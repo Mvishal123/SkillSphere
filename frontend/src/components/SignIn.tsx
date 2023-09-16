@@ -59,7 +59,7 @@ const SignIn = () => {
                     );
                     const data = res.data;
                     localStorage.setItem("token", data.token);
-                    navigate("/");
+                    navigate("/admin");
                   }}
                 >
                   Sign in
