@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../config";
-import CourseCard from "../ui/CourseCard";
-
+import CourseCardTeacher from "../ui/CourseCardTeacher"
 interface CourseDetails {
   title: string;
   description: string;
   price: string;
   image: string;
   teacher: string;
+  _id:string;
 }
 
 type courseData = CourseDetails[]
@@ -36,11 +36,11 @@ const TeacherCourses = () => {
   }
 
   return (
-    <main className="container">
+    <main className="container flex flex-col items-center">
       <h1 className="py-12 text-center text-4xl font-extrabold">My courses</h1>
-      <div className="grid lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-6 place-items-center">
         {courses.map((course) => {
-          return <CourseCard title={course.title} description={course.description} price={course.price} teacher={course.teacher} image={course.image}/>;
+          return <CourseCardTeacher id={course._id} title={course.title} description={course.description} price={course.price} teacher={course.teacher} image={course.image}/>;
         })}
       </div>
     </main>

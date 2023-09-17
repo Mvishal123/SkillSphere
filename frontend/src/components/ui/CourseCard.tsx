@@ -1,10 +1,10 @@
 import Rating from "@mui/material/Rating";
 interface CardProps {
-  title: string;
-  description: string;
-  price: string;
-  teacher: string;
-  image:string
+  title: string | undefined;
+  description: string | undefined;
+  price: string | undefined;
+  teacher: string | undefined;
+  image:string | undefined;
 }
 const CourseCard = (props:CardProps) => {
   return (
@@ -17,7 +17,7 @@ const CourseCard = (props:CardProps) => {
       <div>
         <h1 className="text-lg font-bold pt-1">{props.title ? props.title : "CourseName"}</h1>
         <span className="text-slate-500">{props.teacher ? props.teacher : "Teacher name or organization"}</span>
-        <div className="flex items-center justify-between py-2">
+        <div className="flex items-center justify-between py-2 ">
           <span className="text-2xl font-bold">${props.price ? props.price : "price"}</span>
           <div className="flex items-center">
             <Rating readOnly></Rating>

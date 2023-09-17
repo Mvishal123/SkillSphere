@@ -6,6 +6,7 @@ import MainLandingPage from "./components/pages/MainLandingPage";
 import TeacherLandingPage from "./components/pages/TeacherLandingPage";
 import TeacherAddCourse from "./components/pages/TeacherAddCourse";
 import TeacherCourses from "./components/pages/TeacherCourses";
+import TeacherUpdateCourse from "./components/pages/TeacherUpdateCourse";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/admin/signin" element={<SignIn />} />
         <Route path="/admin/addcourse" element={<TeacherAddCourse />} />
         <Route path="/admin/courses" element={< TeacherCourses/>} />
+        <Route path="/admin/courses/:courseId" element={< TeacherUpdateCourse/>} />
       </Routes>
     </div>
   );
