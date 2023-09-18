@@ -32,6 +32,15 @@ router.get("/me", auth_1.authenticateAdmin, (req, res) => {
         id: req.headers.adminId,
     });
 });
+router.get("/getname", auth_1.authenticateAdmin, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const name = yield db_1.Admin.findOne({ _id: req.headers.adminId });
+    if (name) {
+        res.json({
+            username: name.username
+        });
+        console.log(name.username);
+    }
+}));
 router.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const inputs = signProps.safeParse(req.body);
     if (!inputs.success) {

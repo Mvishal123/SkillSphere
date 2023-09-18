@@ -3,10 +3,13 @@ import { useState } from "react";
 import axios from "axios";
 import { Button } from "./ui/button";
 import TypeAnimationTeacher from "./TypeAnimationTeacher";
+import { useSetRecoilState } from "recoil";
+import { adminState } from "@/store/atoms/admin";
 const SignIn = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const setUserSigned = useSetRecoilState(adminState);
   return (
     <main className="grid grid-cols-1 md:grid-cols-2 p-4 md:p-0 bg-gradient-to-t from-fuchsia-100 white h-[88vh]">
       <section className="flex items-start justify-center md:items-center col-span-1">
@@ -59,6 +62,10 @@ const SignIn = () => {
                     );
                     const data = res.data;
                     localStorage.setItem("token", data.token);
+                    setUserSigned({
+                      username: res.data.token,
+                      isLoading: false
+                    })
                     navigate("/admin");
                   }}
                 >

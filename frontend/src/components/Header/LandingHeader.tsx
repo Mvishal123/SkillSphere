@@ -1,14 +1,17 @@
 // import { UserState } from "../store/atoms/user.ts";
-import { Button } from "./ui/button";
-import { Sun, Moon} from "lucide-react";
+import { Button } from "../ui/button.tsx";
+import { Sun, Moon } from "lucide-react";
 import { useState } from "react";
-import ProfileButton from "./ui/ProfileButton.tsx";
-import HeaderSheet from "./ui/HeaderSheet.tsx";
+import ProfileButton from "../ui/ProfileButton.tsx";
+import HeaderSheet from "../ui/HeaderSheet.tsx";
 import { useNavigate } from "react-router-dom";
+// import { useRecoilValue } from "recoil";
+// import { adminState } from "@/store/atoms/admin.ts";
 
 const Header = () => {
   const [mode, setMode] = useState("dark");
   const navigate = useNavigate();
+  // const adminSigned = useRecoilValue(adminState);
 
   return (
     <header className="px-4 md:px-6 lg:px-8 py-5  flex justify-between items-center bg-transparent">

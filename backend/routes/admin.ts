@@ -3,6 +3,7 @@ import express from "express";
 import { z } from "zod";
 import jwt from "jsonwebtoken";
 import { authenticateAdmin } from "../authentication/auth";
+import { User } from "lucide-react";
 
 const router = express.Router();
 const secret = String(process.env.JWT_SECRET);
@@ -22,6 +23,17 @@ router.get("/me", authenticateAdmin, (req, res) => {
     id: req.headers.adminId,
   });
 });
+
+router.get("/getname", authenticateAdmin, async(req, res) => {
+  const name = await Admin.findOne({_id: req.headers.adminId});
+  if(name){
+    res.json({
+      username: name.username
+    })
+    console.log(name.username);
+    
+  }
+})  
 router.post("/signup", async (req, res) => {
   const inputs = signProps.safeParse(req.body);
   if (!inputs.success) {
