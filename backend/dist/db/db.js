@@ -17,6 +17,7 @@ const userSchema = new mongoose_1.default.Schema({
     username: String,
     password: String,
     email: String,
+    cart: [{ type: mongoose_1.default.Schema.Types.ObjectId, ref: "Course" }],
     mycourses: [{ type: mongoose_1.default.Schema.Types.ObjectId, ref: "Course" }],
 });
 const courseSchema = new mongoose_1.default.Schema({

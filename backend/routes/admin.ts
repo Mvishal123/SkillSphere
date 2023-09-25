@@ -3,7 +3,6 @@ import express from "express";
 import { z } from "zod";
 import jwt from "jsonwebtoken";
 import { authenticateAdmin } from "../authentication/auth";
-import { User } from "lucide-react";
 
 const router = express.Router();
 const secret = String(process.env.JWT_SECRET);
@@ -49,7 +48,7 @@ router.post("/signup", async (req, res) => {
   if (!isAdmin) {
     const type = "admin";
     const adminData = { username, password, type };
-    const newAdmin = await new Admin(adminData);
+    const newAdmin = new Admin(adminData);
     await newAdmin.save();
 
     const token = jwt.sign({ id: newAdmin._id }, secret, { expiresIn: "6h" });

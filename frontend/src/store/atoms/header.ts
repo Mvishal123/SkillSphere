@@ -1,19 +1,30 @@
 import { atom } from "recoil";
 
-interface headerStateType {
+interface ProfileStateType {
     open: boolean
 }
 
-export const navLinkState = atom<headerStateType>({
+interface Headertype {
+    type: string | null
+}
+
+export const navLinkState = atom<ProfileStateType>({
     key: "navLinkState",
     default: {
         open: false
     }
 })
 
-export const profileState = atom<headerStateType>({
+export const profileState = atom<ProfileStateType>({
     key: "profileState",
     default: {
         open: false
+    }
+})
+
+export const HeaderType = atom({
+    key: "HeaderType",
+    default: {
+        type: ""
     }
 })

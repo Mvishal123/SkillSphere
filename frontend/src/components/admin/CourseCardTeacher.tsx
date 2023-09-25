@@ -1,7 +1,5 @@
-import Rating from "@mui/material/Rating";
-import { Button } from "./button";
-import axios from "axios";
-import { BASE_URL } from "../config";
+// import Rating from "@mui/material/Rating";
+import { Button } from "../ui/button";
 import { useNavigate } from "react-router-dom";
 
 interface CardProps {
@@ -36,7 +34,7 @@ const CourseCard = (props: CardProps) => {
           <div className="flex items-center justify-center">
             {/* <Rating readOnly></Rating>
             <span className="text-sm px-2 text-slate-500">(0)</span> */}
-            <Button onClick={() => navigate(`${props.id}`)}>Update course</Button>
+            <Button onClick={() => navigate(`${props.id}`)} className=""><span className="hidden md:block">edit course</span><span className="md:hidden">edit</span></Button>
           </div>
         </div>
       </div>

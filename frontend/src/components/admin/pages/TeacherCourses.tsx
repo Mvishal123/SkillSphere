@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { BASE_URL } from "../config";
-import CourseCardTeacher from "../ui/CourseCardTeacher"
+import { BASE_URL } from "../../config";
+import CourseCardTeacher from "../CourseCardTeacher"
+import { useRecoilValue } from "recoil";
+import { adminState } from "@/store/atoms/admin";
 interface CourseDetails {
   title: string;
   description: string;
@@ -15,6 +17,7 @@ type courseData = CourseDetails[]
 
 const TeacherCourses = () => {
   const [courses, setCourses] = useState<courseData>([]);
+  const access = useRecoilValue(adminState);
   useEffect(() => {
     const init = async () => {
       const res = await axios.get(`${BASE_URL}/admin/courses`, {
@@ -30,6 +33,9 @@ const TeacherCourses = () => {
 
     init();
   }, []);
+  if(!access.username){
+    return<><h1>Unauthorized</h1></>
+  }
 
   if (!courses) {
     return <></>;

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import HeaderSheet from "../ui/HeaderSheet";
-import { Button } from "../ui/button";
+import HeaderSheet from "../HeaderSheet";
+import { Button } from "../../ui/button";
 import { useNavigate } from "react-router-dom";
 import { Sun, Moon, Loader } from "lucide-react";
-import ProfileButton from "../ui/ProfileButton";
+import ProfileButton from "../ProfileButton";
 import axios from "axios";
-import { BASE_URL } from "../config";
+import { BASE_URL } from "../../config";
 import { useSetRecoilState } from "recoil";
-import { adminState } from "../../store/atoms/admin";
+import { adminState } from "../../../store/atoms/admin";
 
 const TeacherSignedHeader = () => {
   const navigate = useNavigate();
@@ -59,8 +59,7 @@ const TeacherSignedHeader = () => {
           </Button>
         </div>
         <div className="hidden lg:flex space-x-6">
-          <div className="flex flex-col">
-            <span className="font-bold">Welcome!</span>
+          <div className="flex items-center justify-center">
             <span className="font-bold text-lg text-slate-800">{username}</span>
           </div>
           <Button
