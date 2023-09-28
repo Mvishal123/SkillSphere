@@ -13,9 +13,11 @@ import { BASE_URL } from "./components/config";
 import { useSetRecoilState } from "recoil";
 import { adminState } from "./store/atoms/admin";
 import UserLandingPage from "./components/user/pages/UserLandingPage";
+import { HeaderType } from "./store/atoms/header";
 
 const App = () => {
   const setAdmin = useSetRecoilState(adminState);
+  const setHeaderState = useSetRecoilState(HeaderType);
   useEffect(() => {
     const init = async () => {
       try {
@@ -29,6 +31,9 @@ const App = () => {
           setAdmin({
             username: res.data.id,
             isLoading: false,
+          });
+          setHeaderState({
+            type: "signed",
           });
         }
       } catch (error) {
@@ -55,7 +60,7 @@ const App = () => {
           path="/admin/courses/:courseId"
           element={<TeacherUpdateCourse />}
         />
-        <Route path="/user" element={<UserLandingPage/>} />
+        <Route path="/user" element={<UserLandingPage />} />
       </Routes>
     </div>
   );

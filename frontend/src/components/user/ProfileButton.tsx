@@ -30,40 +30,14 @@ const ProfileButton = () => {
             <span>Welcome!</span>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          {!admin.username ? (
-            <div className="m-auto">
-              <span>Sign as</span>
-              <DropdownMenuItem className="cursor-pointer justify-center">
-                <Button
-                  className="h-full w-full"
-                  onClick={() => navigate("admin/signup")}
-                >
-                  Teacher
-                </Button>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer justify-center hover:none">
-                <Button className="h-full w-full">Student</Button>
-              </DropdownMenuItem>
-            </div>
-          ) : (
-            <div className="flex flex-col gap-4 items-center">
-              <Button variant={"ghost"}>Profile</Button>
-              <Button
-                variant={"ghost"}
-                className="bg-purple-600 text-white w-2/3 "
-                onClick={() => {
-                  setAdmin({
-                    username: null,
-                    isLoading: false
-                  });
-                  localStorage.setItem("token", "");
-                  navigate("/admin")
-                }}
-              >
-                log out
+            <div>
+              <Button variant="ghost">
+                Sign up
+              </Button>
+              <Button variant="ghost">
+                Sign in
               </Button>
             </div>
-          )}
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

@@ -1,4 +1,10 @@
 import { atom } from "recoil";
+import { recoilPersist } from 'recoil-persist'
+
+
+
+const { persistAtom } = recoilPersist()
+
 
 interface ProfileStateType {
     open: boolean
@@ -26,5 +32,6 @@ export const HeaderType = atom({
     key: "HeaderType",
     default: {
         type: ""
-    }
+    },
+    effects_UNSTABLE: [persistAtom],
 })

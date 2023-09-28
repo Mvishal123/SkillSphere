@@ -17,7 +17,7 @@ const Header = () => {
       </div>
     );
   }
-  if (!headerType.type || headerType.type === "admin") {
+  if (!headerType.type || headerType.type ) {
     return (
       <>
         <LandingHeader />
@@ -25,13 +25,11 @@ const Header = () => {
     );
   }
 
-  if (headerType.type === "admin" && adminSigned.username  ) {
+  if (headerType.type === "admin" && adminSigned.username) {
     return <TeacherSignedHeader />;
   }
 
   if (headerType.type === "user") {
-    console.log(headerType.type);
-    
     return (
       <>
         <UserHeader />

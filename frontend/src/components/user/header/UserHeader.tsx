@@ -6,6 +6,7 @@ import Searchbar from "../Searchbar";
 import Cart from "../Cart";
 import ProfileButton from "../ProfileButton";
 
+
 function UserHeader() {
   const navigate = useNavigate();
   const mode = "dark"; // change it to useRecoilValue later
@@ -14,7 +15,7 @@ function UserHeader() {
       {/* Logo */}
       <h1
         className="text-4xl font-extrabold text-slate-800 cursor-pointer"
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/user")}
       >
         Skill<span className="text-[#7b2cbf]">Sphere</span>
       </h1>

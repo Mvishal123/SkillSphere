@@ -5,14 +5,15 @@ import { useState } from "react";
 import ProfileButton from "../ProfileButton.tsx";
 import HeaderSheet from "../HeaderSheet.tsx";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { HeaderType } from "@/store/atoms/header.ts";
 // import { useRecoilValue } from "recoil";
 // import { adminState } from "@/store/atoms/admin.ts";
 
 const Header = () => {
   const [mode, setMode] = useState("dark");
   const navigate = useNavigate();
-  // const adminSigned = useRecoilValue(adminState);
-
+  const setHeaderState = useSetRecoilState(HeaderType);
   return (
     <header className="px-4 md:px-6 lg:px-8 py-5  flex justify-between items-center bg-transparent">
       <HeaderSheet mode={mode} setMode={setMode} />
@@ -49,7 +50,12 @@ const Header = () => {
           >
             Teacher
           </Button>
-          <Button size="lg" className="bg-[#7b2cbf]">
+          <Button size="lg" className="bg-[#7b2cbf]" onClick={() => {
+            setHeaderState({
+              type: "user",
+            });
+            navigate("/user");
+          }}>
             Student
           </Button>
         </div>
