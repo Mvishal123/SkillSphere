@@ -20,7 +20,7 @@ const TeacherAddCourse = () => {
 
   if (access.username) {
     return (
-      <main className="grid grid-cols-1 gap-2 lg:grid-cols-2 place-items-center h-[140vh] lg:h-[100vh] bg-gradient-to-t from-fuchsia-100 white">
+      <main className="grid grid-cols-1 gap-2 sm:grid-cols-2 place-items-center bg-gradient-to-t from-fuchsia-100 white mt-10">
         <div className="px-12 border pb-10 rounded-lg shadow-2xl bg-slate-50">
           <h1 className="py-12 text-3xl font-bold text-center">
             Add course details
@@ -90,7 +90,7 @@ const TeacherAddCourse = () => {
           </div>
         </div>
 
-        <div className=" w-10/12">
+        <div className="max-w-[550px] min-w-[280px] w-[350px]">
           <CourseCard
             title={title}
             description={description}

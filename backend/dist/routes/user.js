@@ -16,7 +16,6 @@ const db_1 = require("../db/db");
 const express_1 = __importDefault(require("express"));
 const zod_1 = require("zod");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const auth_1 = require("../authentication/auth");
 const mongoose_1 = __importDefault(require("mongoose"));
 const router = express_1.default.Router();
 const secret = String(process.env.JWT_SECRET);
@@ -112,19 +111,36 @@ router.get("/courses/:courseId", (req, res) => __awaiter(void 0, void 0, void 0,
         });
     }
 }));
-router.post("/cart/:courseId", auth_1.authenticateAdmin, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get("/cartnumber", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const userId = req.headers.adminId;
+        const user = yield db_1.Users.findOne({ _id: userId });
+        const cart = user === null || user === void 0 ? void 0 : user.cart.length;
+        console.log(user === null || user === void 0 ? void 0 : user.cart);
+        res.json({
+            number: cart,
+        });
+    }
+    catch (error) {
+        res.json({
+            error: error,
+            cart: 0,
+        });
+    }
+}));
+router.post("/cart/:courseId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { courseId } = req.params;
         const userId = req.headers.adminId;
         const user = yield db_1.Users.findById(userId);
         if (user) {
             const id = new mongoose_1.default.Types.ObjectId(courseId);
-            if (user.cart.includes(id)) {
-                res.status(403).json({
-                    message: "Course already present",
-                });
-                return;
-            }
+            // if (user.cart.includes(id)) {
+            //   res.status(403).json({
+            //     message: "Course already present",
+            //   });
+            //   return;
+            // }
             user.cart.push(id);
             yield user.save();
             res.json({
@@ -138,7 +154,7 @@ router.post("/cart/:courseId", auth_1.authenticateAdmin, (req, res) => __awaiter
         });
     }
 }));
-router.patch("/cart/remove/:courseId", auth_1.authenticateAdmin, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.patch("/cart/remove/:courseId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { courseId } = req.params;
         const userId = req.headers.adminId;

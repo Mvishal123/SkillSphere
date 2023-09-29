@@ -3,6 +3,7 @@ import { Button } from "../../ui/button";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../config";
+import { spawn } from "child_process";
 // import { useEffect } from "react";
 
 const TeacherLandingPage = () => {
@@ -38,7 +39,7 @@ const TeacherLandingPage = () => {
         <Button onClick={() => {
           navigate("/admin/addcourse")
         }}className="bg-[#7b2cbf] mt-12" size="lg">
-          Add course
+          {adminName ? <span>Add course</span> : <span>Get Started</span>}
         </Button>
       </div>
     </main>

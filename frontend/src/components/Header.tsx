@@ -9,6 +9,7 @@ import { HeaderType } from "@/store/atoms/header.ts";
 const Header = () => {
   const adminSigned = useRecoilValue(adminState);
   const headerType = useRecoilValue(HeaderType);
+  console.log(headerType.type);
 
   if (adminSigned.isLoading) {
     return (
@@ -17,16 +18,17 @@ const Header = () => {
       </div>
     );
   }
-  if (!headerType.type || headerType.type ) {
+
+  if (headerType.type === "admin" && adminSigned.username) {
+    return <TeacherSignedHeader />;
+  }
+  
+  if (headerType.type === "admin") {
     return (
       <>
         <LandingHeader />
       </>
     );
-  }
-
-  if (headerType.type === "admin" && adminSigned.username) {
-    return <TeacherSignedHeader />;
   }
 
   if (headerType.type === "user") {

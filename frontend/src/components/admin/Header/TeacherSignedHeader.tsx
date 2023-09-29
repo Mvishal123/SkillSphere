@@ -8,12 +8,14 @@ import axios from "axios";
 import { BASE_URL } from "../../config";
 import { useSetRecoilState } from "recoil";
 import { adminState } from "../../../store/atoms/admin";
+import { HeaderType } from "@/store/atoms/header";
 
 const TeacherSignedHeader = () => {
   const navigate = useNavigate();
   const [mode, setMode] = useState("dark");
   const setUser = useSetRecoilState(adminState);
   const [username, setUsername] = useState("")
+  const setHeaderState = useSetRecoilState(HeaderType);
   useEffect(() => {
     const init = async () => {
       const res = await axios.get(`${BASE_URL}/admin/getname`, {
@@ -33,7 +35,7 @@ const TeacherSignedHeader = () => {
       <HeaderSheet mode={mode} setMode={setMode} />
       <h1
         className="text-4xl font-extrabold text-slate-800 cursor-pointer"
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/admin")}
       >
         Skill<span className="text-[#7b2cbf]">Sphere</span>
       </h1>
@@ -71,7 +73,10 @@ const TeacherSignedHeader = () => {
                 isLoading: false,
                 username: null,
               });
-              navigate("/admin/signin");
+              setHeaderState({
+                type: "admin"
+              });
+              navigate("/admin");
             }}
           >
             Log out

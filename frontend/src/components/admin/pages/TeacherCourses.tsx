@@ -44,7 +44,7 @@ const TeacherCourses = () => {
   return (
     <main className="container flex flex-col items-center">
       <h1 className="py-12 text-center text-4xl font-extrabold">My courses</h1>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-6 place-items-center">
+      <div className="grid grid-cols-1  xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 lg:gap-6 place-items-center">
         {courses.map((course) => {
           return <CourseCardTeacher id={course._id} title={course.title} description={course.description} price={course.price} teacher={course.teacher} image={course.image}/>;
         })}

@@ -103,19 +103,36 @@ router.get("/courses/:courseId", async (req, res) => {
   }
 });
 
-router.post("/cart/:courseId", authenticateAdmin, async (req, res) => {
+router.get("/cartnumber",  async (req, res) => {
+  try {
+    const userId = req.headers.adminId;
+    const user = await Users.findOne({ _id: userId });
+    const cart = user?.cart.length;
+    console.log(user?.cart);
+    res.json({
+      number: cart,
+    });
+  } catch (error) {
+    res.json({
+      error: error,
+      cart: 0,
+    });
+  }
+});
+
+router.post("/cart/:courseId", async (req, res) => {
   try {
     const { courseId } = req.params;
     const userId = req.headers.adminId;
     const user = await Users.findById(userId);
     if (user) {
       const id = new mongoose.Types.ObjectId(courseId);
-      if (user.cart.includes(id)) {
-        res.status(403).json({
-          message: "Course already present",
-        });
-        return;
-      }
+      // if (user.cart.includes(id)) {
+      //   res.status(403).json({
+      //     message: "Course already present",
+      //   });
+      //   return;
+      // }
       user.cart.push(id);
       await user.save();
       res.json({
@@ -129,30 +146,30 @@ router.post("/cart/:courseId", authenticateAdmin, async (req, res) => {
   }
 });
 
-router.patch("/cart/remove/:courseId", authenticateAdmin, async (req, res) => {
-    try {
-        const { courseId } = req.params;
-        const userId = req.headers.adminId;
-        const user = await Users.findById(userId);
-        if (user) {
-        const id = new mongoose.Types.ObjectId(courseId);
-        if (!user.cart.includes(id)) {
-            res.status(403).json({
-            message: "Course not present",
-            });
-            return;
-        }
-        user.cart = user.cart.filter((course) => !course.equals(id));
-        await user.save();
-        res.json({
-            message: "Course removed from cart",
+router.patch("/cart/remove/:courseId", async (req, res) => {
+  try {
+    const { courseId } = req.params;
+    const userId = req.headers.adminId;
+    const user = await Users.findById(userId);
+    if (user) {
+      const id = new mongoose.Types.ObjectId(courseId);
+      if (!user.cart.includes(id)) {
+        res.status(403).json({
+          message: "Course not present",
         });
-        }
-    } catch (e) {
-        res.status(404).json({
-        error: "Course not found",
-        });
+        return;
+      }
+      user.cart = user.cart.filter((course) => !course.equals(id));
+      await user.save();
+      res.json({
+        message: "Course removed from cart",
+      });
     }
+  } catch (e) {
+    res.status(404).json({
+      error: "Course not found",
+    });
+  }
 });
 
 export default router;

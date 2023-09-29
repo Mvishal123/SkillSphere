@@ -28,10 +28,10 @@ export const profileState = atom<ProfileStateType>({
     }
 })
 
-export const HeaderType = atom({
+export const HeaderType = atom<Headertype>({
     key: "HeaderType",
     default: {
-        type: ""
+        type: "admin"
     },
     effects_UNSTABLE: [persistAtom],
 })

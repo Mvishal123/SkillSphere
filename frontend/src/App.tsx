@@ -10,7 +10,7 @@ import TeacherUpdateCourse from "./components/admin/pages/TeacherUpdateCourse";
 import { useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "./components/config";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { adminState } from "./store/atoms/admin";
 import UserLandingPage from "./components/user/pages/UserLandingPage";
 import { HeaderType } from "./store/atoms/header";
@@ -18,6 +18,9 @@ import { HeaderType } from "./store/atoms/header";
 const App = () => {
   const setAdmin = useSetRecoilState(adminState);
   const setHeaderState = useSetRecoilState(HeaderType);
+  const headerState = useRecoilValue(HeaderType)
+  console.log(setHeaderState);
+  
   useEffect(() => {
     const init = async () => {
       try {
@@ -33,13 +36,16 @@ const App = () => {
             isLoading: false,
           });
           setHeaderState({
-            type: "signed",
+            type: "admin",
           });
         }
       } catch (error) {
         setAdmin({
           username: null,
           isLoading: false,
+        });
+        setHeaderState({
+          type: headerState.type,
         });
       }
     };

@@ -55,7 +55,7 @@ router.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function*
     if (!isAdmin) {
         const type = "admin";
         const adminData = { username, password, type };
-        const newAdmin = yield new db_1.Admin(adminData);
+        const newAdmin = new db_1.Admin(adminData);
         yield newAdmin.save();
         const token = jsonwebtoken_1.default.sign({ id: newAdmin._id }, secret, { expiresIn: "6h" });
         res.json({

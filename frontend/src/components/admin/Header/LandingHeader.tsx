@@ -46,16 +46,25 @@ const Header = () => {
             variant={"ghost"}
             className="hover:bg-[#7b2cbf] hover:text-white"
             size="lg"
-            onClick={() => navigate("/admin/signup")}
+            onClick={() => {
+              setHeaderState({
+                type: "admin",
+              });
+              navigate("/admin/signup");
+            }}
           >
             Teacher
           </Button>
-          <Button size="lg" className="bg-[#7b2cbf]" onClick={() => {
-            setHeaderState({
-              type: "user",
-            });
-            navigate("/user");
-          }}>
+          <Button
+            size="lg"
+            className="bg-[#7b2cbf]"
+            onClick={() => {
+              setHeaderState({
+                type: "user",
+              });
+              navigate("/user");
+            }}
+          >
             Student
           </Button>
         </div>
