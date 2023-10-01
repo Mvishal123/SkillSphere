@@ -3,18 +3,18 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
+  // DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { adminState } from "@/store/atoms/admin";
+// import { adminState } from "@/store/atoms/admin";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
+// import { useRecoilState, useRecoilValue } from "recoil";
 
 const ProfileButton = () => {
   const navigate = useNavigate();
-  const [admin, setAdmin] = useRecoilState(adminState);
+  // const [admin, setAdmin] = useRecoilState(adminState);
 
   return (
     <div>
@@ -31,10 +31,10 @@ const ProfileButton = () => {
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
             <div>
-              <Button variant="ghost">
+              <Button variant="ghost" onClick={() => navigate("/user/signup")}>
                 Sign up
               </Button>
-              <Button variant="ghost">
+              <Button variant="ghost" onClick={() => navigate("/user/signin")}>
                 Sign in
               </Button>
             </div>

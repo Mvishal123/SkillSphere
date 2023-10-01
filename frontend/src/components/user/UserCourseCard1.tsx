@@ -3,9 +3,11 @@ import axios from "axios";
 import { BASE_URL } from "../config";
 import { Rating } from "@mui/material";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 function UserCourseCard1() {
   const [courses, setCourses] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     const init = async () => {
       const res = await axios.get(`${BASE_URL}/user/courses`);
@@ -48,11 +50,13 @@ function UserCourseCard1() {
       >
         {courses.map((course, i) => {
           return (
-            <div className="px-2 pt-2 min-w-[300px]" key={i}>
+            <div className="px-2 pt-2 min-w-[300px] cursor-pointer group" key={i} onClick={() => {
+              navigate(`/user/courses/${course._id}`)
+            }}>
               <img
-                src="https://wallpaper.dog/large/20525131.jpg"
+                src="https://wallpaper.dog/large/20525131.jpg "
                 alt=""
-                className="h-38 w-66"
+                className="h-38 w-66 group-hover:scale-105"
               />
               <div>
                 <h1 className="text-lg font-bold pt-1">{course.title}</h1>

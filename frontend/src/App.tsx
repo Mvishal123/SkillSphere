@@ -14,6 +14,8 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { adminState } from "./store/atoms/admin";
 import UserLandingPage from "./components/user/pages/UserLandingPage";
 import { HeaderType } from "./store/atoms/header";
+import SigninUser from "./components/user/SigninUser";
+import SignupUser from "./components/user/SignupUser";
 
 const App = () => {
   const setAdmin = useSetRecoilState(adminState);
@@ -62,6 +64,8 @@ const App = () => {
         <Route path="/admin/signin" element={<SignIn />} />
         <Route path="/admin/addcourse" element={<TeacherAddCourse />} />
         <Route path="/admin/courses" element={<TeacherCourses />} />
+        <Route path="/user/signin" element={<SigninUser />} />
+        <Route path="/user/signup" element={<SignupUser />} />
         <Route
           path="/admin/courses/:courseId"
           element={<TeacherUpdateCourse />}
