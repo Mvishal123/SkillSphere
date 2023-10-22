@@ -7,7 +7,8 @@ function UserLandingPage() {
       <section>
         <Hero />
       </section>
-      <section>
+      <section className="mt-12">
+        <h1 className="text-3xl font-bold container1 tracking-tight">Popular courses</h1>
         <CourseSlider />
       </section>
     </div>

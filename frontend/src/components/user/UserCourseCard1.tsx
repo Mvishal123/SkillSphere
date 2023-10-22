@@ -40,41 +40,47 @@ function UserCourseCard1() {
   if (courses.length === 0) return <div>loading...</div>;
 
   return (
-    <main className=" container relative flex items-center">
-      <div className="rounded-full hover:opacity-100 opacity-50 ">
-        <ChevronLeft size={40} id="slideLeft" onClick={slideLeft} />
-      </div>
-      <div
-        className="flex overflow-x-scroll scroll-smooth scrollbar-none container"
-        id="slider"
-      >
-        {courses.map((course, i) => {
-          return (
-            <div className="px-2 pt-2 min-w-[300px] cursor-pointer group" key={i} onClick={() => {
-              navigate(`/user/courses/${course._id}`)
-            }}>
-              <img
-                src="https://wallpaper.dog/large/20525131.jpg "
-                alt=""
-                className="h-38 w-66 group-hover:scale-105"
-              />
-              <div>
-                <h1 className="text-lg font-bold pt-1">{course.title}</h1>
-                <span className="text-slate-500">{course.teacher}</span>
-                <div className="flex items-center justify-between py-2 ">
-                  <span className="text-lg font-bold">{course.price}</span>
-                  <div className="flex items-center">
-                    <Rating readOnly></Rating>
-                    <span className="text-sm px-2 text-slate-500">(0)</span>
+    <main>
+      <div className=" container relative flex items-center">
+        <div className="rounded-full hover:opacity-100 opacity-50 ">
+          <ChevronLeft size={40} id="slideLeft" onClick={slideLeft} />
+        </div>
+        <div
+          className="flex overflow-x-scroll scroll-smooth scrollbar-none container"
+          id="slider"
+        >
+          {courses.map((course, i) => {
+            return (
+              <div
+                className="px-2 pt-2 min-w-[300px] cursor-pointer group"
+                key={i}
+                onClick={() => {
+                  navigate(`/user/courses/${course._id}`);
+                }}
+              >
+                <img
+                  src="https://wallpaper.dog/large/20525131.jpg "
+                  alt=""
+                  className="h-38 w-66 group-hover:scale-105"
+                />
+                <div>
+                  <h1 className="text-lg font-bold pt-1">{course.title}</h1>
+                  <span className="text-slate-500">{course.teacher}</span>
+                  <div className="flex items-center justify-between py-2 ">
+                    <span className="text-lg font-bold">{course.price}</span>
+                    <div className="flex items-center">
+                      <Rating readOnly></Rating>
+                      <span className="text-sm px-2 text-slate-500">(0)</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
-      <div className="rounded-full hover:opacity-100 opacity-50 scroll">
-        <ChevronRight size={40} id="slideRight" onClick={slideRight} />
+            );
+          })}
+        </div>
+        <div className="rounded-full hover:opacity-100 opacity-50 scroll">
+          <ChevronRight size={40} id="slideRight" onClick={slideRight} />
+        </div>
       </div>
     </main>
   );
